@@ -53,16 +53,15 @@ export async function updateTerms(guid: string, request: SchemaTermRequest): Pro
     }
 }
 
-export async function deleteTerms(guid: string): Promise<SchemaTermResponse> {
+export async function deleteTerms(guid: string): Promise<boolean> {
     try {
         const response = await fetch(`${API_URL}/core/term-apps/${guid}`, withAuthHeaders({
             method: "DELETE"
         }));
-        const data = await response.json();
         if (!response.ok) {
-            throw new Error(data.message);
+            throw new Error("Gagal menghapus data term");
         }
-        return data;
+        return true;
     } catch (error) {
         throw error;
     }

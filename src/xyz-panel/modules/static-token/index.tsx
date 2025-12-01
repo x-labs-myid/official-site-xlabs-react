@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async"
-import { FaPencil, FaTrash } from "react-icons/fa6"
+import { FaPencil, FaPlus, FaTrash } from "react-icons/fa6"
 import type { SchemaStaticTokenData } from "@/xyz-panel/types/static-token"
 import { useEffect, useState } from "react"
 import { deleteStaticToken, getStaticToken } from "@/xyz-panel/api/static-token"
@@ -73,7 +73,7 @@ const StaticToken = () => {
                 <div className="flex justify-between items-center mb-4">
                     <h1 className="text-4xl font-bold">Static Token</h1>
                     <button className="btn bg-blue-500/90 hover:bg-blue-400/80" onClick={() => setShowAdd(true)}>
-                        Add Static Token
+                        <FaPlus className="w-4 h-4" />
                     </button>
                 </div>
                 <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 my-4">
@@ -109,7 +109,7 @@ const StaticToken = () => {
                                     <td>{item.name}</td>
                                     <td>{item.type}</td>
                                     <td>{item.allowed_routes}</td>
-                                    <td>{item.is_active === '1' ? "Published" : "Draft"}</td>
+                                    <td>{item.is_active ? "Published" : "Draft"}</td>
                                     <td>{item.created_at}</td>
                                     <td>{item.updated_at}</td>
                                 </tr>

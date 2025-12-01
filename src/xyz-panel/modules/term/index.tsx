@@ -4,7 +4,7 @@ import { Fragment, useEffect, useState } from "react"
 import { deleteTerms, getTerms } from "@/xyz-panel/api/term"
 import { logout } from "@/xyz-panel/utils/auth"
 import globalHook from "@/hooks/global"
-import { FaBook, FaPencil, FaTrash } from "react-icons/fa6"
+import { FaBook, FaPencil, FaPlus, FaTrash } from "react-icons/fa6"
 import Modal from "@/components/ui/Modal"
 import Add from "./components/add"
 import Edit from "./components/edit"
@@ -42,7 +42,6 @@ const Term = () => {
         } catch (error) {
             const message = error instanceof Error ? error.message : "Gagal memuat data term"
             toggleToast(true, message, "error")
-            logout()
         } finally {
             toggleLoading(false)
         }
@@ -58,11 +57,17 @@ const Term = () => {
         } catch (error) {
             const message = error instanceof Error ? error.message : "Gagal menghapus data term"
             toggleToast(true, message, "error")
-            logout()
         } finally {
             toggleLoading(false)
             setIdForDelete(null)
         }
+    }
+
+    function handleCloseModal(refreshData: boolean = false) {
+        setShowAdd(false)
+        setDetail(null)
+        setIdForDelete(null)
+        if (refreshData) getDataTerm()
     }
 
     useEffect(() => {
@@ -78,7 +83,7 @@ const Term = () => {
                 <div className="flex justify-between items-center mb-4">
                     <h1 className="text-4xl font-bold">Terms</h1>
                     <button className="btn bg-blue-500/90 hover:bg-blue-400/80" onClick={() => setShowAdd(true)}>
-                        Add Terms
+                        <FaPlus className="w-4 h-4" />
                     </button>
                 </div>
                 <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 my-4">
@@ -107,7 +112,7 @@ const Term = () => {
                                     {group.items.map((item: any, i: number) => (
                                         <tr key={`item-${index}-${i}`}>
                                             <td>{item.name}</td>
-                                            <td>{item.public === '1' ? 'Published' : 'Draft'}</td>
+                                            <td>{item.public ? 'Published' : 'Draft'}</td>
                                             <td>{item.created_at}</td>
                                             <td>
                                                 <div className="flex gap-2">
@@ -127,12 +132,12 @@ const Term = () => {
                     </table>
                 </div>
             </div>
-            <Add show={showAdd} apps={apps} onClose={() => setShowAdd(false)} />
-            {detail && <Edit show={detail ? true : false} apps={apps} detail={detail} onClose={() => setDetail(null)} />}
-            <Modal show={idForDelete ? true : false} title="Apakah kamu yakin mau hapus data ini?" onClose={() => setIdForDelete(null)}>
+            <Add show={showAdd} apps={apps} onClose={handleCloseModal} />
+            {detail && <Edit show={detail ? true : false} apps={apps} detail={detail} onClose={handleCloseModal} />}
+            <Modal show={idForDelete ? true : false} title="Apakah kamu yakin mau hapus data ini?" onClose={() => handleCloseModal(false)}>
                 <div className="flex justify-end gap-2">
                     <button className="btn bg-blue-500/90 hover:bg-blue-400/80" onClick={handleDelete}>Ya</button>
-                    <button className="btn btn-ghost" onClick={() => setIdForDelete(null)}>Tidak</button>
+                    <button className="btn btn-ghost" onClick={() => handleCloseModal(false)}>Tidak</button>
                 </div>
             </Modal>
         </>

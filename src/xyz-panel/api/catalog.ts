@@ -66,16 +66,15 @@ export async function updateCatalog(guid: string, request: SchemaCatalogRequest)
     }
 }
 
-export async function deleteCatalog(guid: string): Promise<SchemaCatalogResponse> {
+export async function deleteCatalog(guid: string): Promise<boolean> {
     try {
         const response = await fetch(`${API_URL}/core/apps/${guid}`, withAuthHeaders({
             method: "DELETE"
         }));
-        const data = await response.json();
         if (!response.ok) {
-            throw new Error(data.message);
+            throw new Error("Gagal menghapus data catalog");
         }
-        return data;
+        return true;
     } catch (error) {
         throw error;
     }

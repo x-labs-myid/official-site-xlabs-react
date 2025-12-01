@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { deleteCatalog, getCatalog } from "@/xyz-panel/api/catalog"
 import { logout } from "@/xyz-panel/utils/auth"
 import globalHook from "@/hooks/global"
-import { FaPencil, FaTrash } from "react-icons/fa6"
+import { FaPencil, FaPlus, FaTrash } from "react-icons/fa6"
 import Modal from "@/components/ui/Modal"
 import Add from "./components/add"
 import Edit from "./components/edit"
@@ -67,7 +67,7 @@ const Catalog = () => {
                 <div className="flex justify-between items-center mb-4">
                     <h1 className="text-4xl font-bold">Catalog</h1>
                     <button className="btn bg-blue-500/90 hover:bg-blue-400/80" onClick={() => setShowAdd(true)}>
-                        Add Catalog
+                        <FaPlus className="w-4 h-4" />
                     </button>
                 </div>
                 <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 my-4">
@@ -107,7 +107,7 @@ const Catalog = () => {
                                             <span className="badge badge-ghost" key={index}>{term.name}</span>
                                         ))}
                                     </td>
-                                    <td>{item.public === '1' ? "Published" : "Draft"}</td>
+                                    <td>{item.public ? "Published" : "Draft"}</td>
                                     <td>{item.created_at}</td>
                                 </tr>
                             ))}

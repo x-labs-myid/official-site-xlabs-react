@@ -53,16 +53,15 @@ export async function updateStaticToken(guid: string, request: SchemaStaticToken
     }
 }
 
-export async function deleteStaticToken(guid: string): Promise<SchemaStaticTokenResponse> {
+export async function deleteStaticToken(guid: string): Promise<boolean> {
     try {
         const response = await fetch(`${API_URL}/core/static-tokens/${guid}`, withAuthHeaders({
             method: "DELETE"
         }));
-        const data = await response.json();
         if (!response.ok) {
-            throw new Error(data.message);
+            throw new Error("Gagal menghapus data static token");
         }
-        return data;
+        return true;
     } catch (error) {
         throw error;
     }

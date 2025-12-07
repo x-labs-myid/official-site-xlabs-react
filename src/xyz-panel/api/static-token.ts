@@ -1,4 +1,4 @@
-import { withAuthHeaders } from "@/xyz-panel/utils/auth";
+import { logout, withAuthHeaders } from "@/xyz-panel/utils/auth";
 import { API_URL } from "@/constant";
 import { type SchemaStaticTokenRequest, type SchemaStaticTokenResponse } from "@/xyz-panel/types/static-token";
 
@@ -7,6 +7,7 @@ export async function getStaticToken(): Promise<SchemaStaticTokenResponse> {
         const response = await fetch(`${API_URL}/core/static-tokens`, withAuthHeaders());
         const data = await response.json();
         if (!response.ok) {
+            if (response.status == 401) logout()
             throw new Error(data.message);
         }
         return data;
@@ -26,6 +27,7 @@ export async function createStaticToken(request: SchemaStaticTokenRequest): Prom
         }));
         const data = await response.json();
         if (!response.ok) {
+            if (response.status == 401) logout()
             throw new Error(data.message);
         }
         return data;
@@ -45,6 +47,7 @@ export async function updateStaticToken(guid: string, request: SchemaStaticToken
         }));
         const data = await response.json();
         if (!response.ok) {
+            if (response.status == 401) logout()
             throw new Error(data.message);
         }
         return data;
@@ -59,6 +62,7 @@ export async function deleteStaticToken(guid: string): Promise<boolean> {
             method: "DELETE"
         }));
         if (!response.ok) {
+            if (response.status == 401) logout()
             throw new Error("Gagal menghapus data static token");
         }
         return true;

@@ -10,7 +10,6 @@ export async function getDataApp() {
         }
         return data.data;
     } catch (e) {
-        console.log(e)
         throw e;
     }
 }
@@ -24,7 +23,6 @@ export async function getDataTermApp(slug: string) {
         }
         return data.data;
     } catch (e) {
-        console.log(e)
         throw e;
     }
 }

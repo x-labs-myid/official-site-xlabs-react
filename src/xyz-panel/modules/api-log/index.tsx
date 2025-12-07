@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react"
 import { Helmet } from "react-helmet-async"
-import type { SchemaApiLogData } from "@/xyz-panel/types/api-log"
-import { getApiLog } from "@/xyz-panel/api/api-log"
 import globalHook from "@/hooks/global"
-import { logout } from "@/xyz-panel/utils/auth"
 import Pagination from "@/components/ui/Pagination"
+import { getLogApi } from "@/xyz-panel/api/log"
+import type { SchemaLogApiData } from "@/xyz-panel/types/log"
 
 const ApiLog = () => {
-    const [apiLog, setApiLog] = useState<SchemaApiLogData[]>([])
+    const [apiLog, setApiLog] = useState<SchemaLogApiData[]>([])
     const [currentPage, setCurrentPage] = useState<number>(0)
     const [totalData, setTotalData] = useState<number>(0)
     const [totalPages, setTotalPages] = useState<number>(0)
@@ -19,7 +18,7 @@ const ApiLog = () => {
     async function getDataApiLog() {
         try {
             toggleLoading(true, "Lagi ngambil data api log...")
-            const response = await getApiLog(currentPage, limit)
+            const response = await getLogApi(currentPage, limit)
             const total_page = Math.ceil(response.total / limit)
             setApiLog(response.data)
             setTotalData(response.total)
@@ -27,7 +26,6 @@ const ApiLog = () => {
         } catch (error) {
             const message = error instanceof Error ? error.message : "Gagal memuat data api log"
             toggleToast(true, message, "error")
-            logout()
         } finally {
             toggleLoading(false)
         }
@@ -65,9 +63,9 @@ const ApiLog = () => {
                                 <tr key={index}>
                                     <th>{item.endpoint}</th>
                                     <td>{item.method}</td>
-                                    <td>{item.ip_address}</td>
-                                    <td>{item.user_agent}</td>
-                                    <td>{item.created_at}</td>
+                                    <td>{item.ip}</td>
+                                    <td>{item.userAgent}</td>
+                                    <td>{item.timestamp}</td>
                                 </tr>
                             ))}
                         </tbody>

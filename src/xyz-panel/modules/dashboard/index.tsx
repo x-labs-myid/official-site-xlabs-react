@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { getApiLog } from "@/xyz-panel/api/api-log";
-import { getUserDevice } from "@/xyz-panel/api/user-device";
 import globalHook from "@/hooks/global";
-import { logout } from "@/xyz-panel/utils/auth";
+import { getLogApi, getLogUserDevice } from "@/xyz-panel/api/log";
 
 const Dashboard = () => {
     const [totalApiLog, setTotalApiLog] = useState<number>(0);
@@ -15,15 +13,14 @@ const Dashboard = () => {
         try {
             toggleLoading(true, "Lagi ngambil data dashboard...")
             const [apiLog, userDevice] = await Promise.all([
-                getApiLog(0, 0),
-                getUserDevice(0, 0)
+                getLogApi(0, 0),
+                getLogUserDevice(0, 0)
             ])
             setTotalApiLog(apiLog.total)
             setTotalUserDevice(userDevice.total)
         } catch (error) {
             const message = error instanceof Error ? error.message : "Gagal memuat data dashboard"
             toggleToast(true, message, "error")
-            logout()
         } finally {
             toggleLoading(false)
         }

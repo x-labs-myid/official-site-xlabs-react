@@ -1,13 +1,12 @@
 import { Helmet } from "react-helmet-async"
-import { logout } from "@/xyz-panel/utils/auth"
 import { useEffect, useState } from "react"
-import { getUserDevice } from "@/xyz-panel/api/user-device"
 import globalHook from "@/hooks/global"
-import type { SchemaUserDeviceData } from "@/xyz-panel/types/user-device"
+import type { SchemaLogUserDeviceData } from "@/xyz-panel/types/log"
 import Pagination from "@/components/ui/Pagination"
+import { getLogUserDevice } from "@/xyz-panel/api/log"
 
 const UserDevice = () => {
-    const [userDevice, setUserDevice] = useState<SchemaUserDeviceData[]>([])
+    const [userDevice, setUserDevice] = useState<SchemaLogUserDeviceData[]>([])
     const [currentPage, setCurrentPage] = useState<number>(0)
     const [totalData, setTotalData] = useState<number>(0)
     const [totalPages, setTotalPages] = useState<number>(0)
@@ -19,7 +18,7 @@ const UserDevice = () => {
     async function getDataUserDevice() {
         try {
             toggleLoading(true, "Lagi ngambil data user device...")
-            const response = await getUserDevice(currentPage, limit)
+            const response = await getLogUserDevice(currentPage, limit)
             const total_page = Math.ceil(response.total / limit)
             setUserDevice(response.data)
             setTotalData(response.total)
@@ -27,7 +26,6 @@ const UserDevice = () => {
         } catch (error) {
             const message = error instanceof Error ? error.message : "Gagal memuat data user device"
             toggleToast(true, message, "error")
-            logout()
         } finally {
             toggleLoading(false)
         }

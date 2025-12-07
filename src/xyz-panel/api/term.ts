@@ -1,5 +1,5 @@
 import { type SchemaTermRequest, type SchemaTermResponse } from "@/xyz-panel/types/term";
-import { withAuthHeaders } from "@/xyz-panel/utils/auth";
+import { logout, withAuthHeaders } from "@/xyz-panel/utils/auth";
 import { API_URL } from "@/constant";
 
 export async function getTerms(): Promise<SchemaTermResponse> {
@@ -7,6 +7,7 @@ export async function getTerms(): Promise<SchemaTermResponse> {
         const response = await fetch(`${API_URL}/core/term-apps`, withAuthHeaders());
         const data = await response.json();
         if (!response.ok) {
+            if (response.status == 401) logout()
             throw new Error(data.message);
         }
         return data;
@@ -26,6 +27,7 @@ export async function createTerms(request: SchemaTermRequest): Promise<SchemaTer
         }));
         const data = await response.json();
         if (!response.ok) {
+            if (response.status == 401) logout()
             throw new Error(data.message);
         }
         return data;
@@ -45,6 +47,7 @@ export async function updateTerms(guid: string, request: SchemaTermRequest): Pro
         }));
         const data = await response.json();
         if (!response.ok) {
+            if (response.status == 401) logout()
             throw new Error(data.message);
         }
         return data;
@@ -59,6 +62,7 @@ export async function deleteTerms(guid: string): Promise<boolean> {
             method: "DELETE"
         }));
         if (!response.ok) {
+            if (response.status == 401) logout()
             throw new Error("Gagal menghapus data term");
         }
         return true;

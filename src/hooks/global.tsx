@@ -16,7 +16,7 @@ const globalHook = () => {
         setType(type)
         setTimeout(() => {
             setShow(false)
-        }, 5000)
+        }, 7000)
     }
 
     function toggleLoading(status: boolean, text: string = '') {

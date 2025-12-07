@@ -3,11 +3,13 @@ import { useParams } from 'react-router-dom';
 import { getDataTermApp } from '@/landing-page/api';
 import type { LandingPageTermAppData } from '@/landing-page/type';
 import globalHook from '@/hooks/global';
+import { Helmet } from 'react-helmet-async';
 
 const WithParam = () => {
     const { app, slug } = useParams();
+    const titleWeb = app?.replaceAll("-", " ").toLocaleUpperCase()
     const [data, setData] = useState<LandingPageTermAppData>();
-    const { toggleLoading } = globalHook()
+    const { toggleLoading, toggleToast } = globalHook()
 
     async function getData() {
         try {
@@ -15,7 +17,8 @@ const WithParam = () => {
             const res = await getDataTermApp(`${app}/${slug}`)
             setData(res)
         } catch (e) {
-            console.log(e)
+            const message = e instanceof Error ? e.message : "Terjadi kesalahan"
+            toggleToast(true, message, 'error')
         } finally {
             toggleLoading(false)
         }
@@ -25,8 +28,13 @@ const WithParam = () => {
         getData()
     }, []);
 
+    if (!data) return null
+
     return (
         <>
+            <Helmet>
+                <title>{titleWeb ? `${titleWeb} - X-LABS.my.id | Inovasi dan Pengembangan Aplikasi Mobile` : 'X-LABS.my.id | Inovasi dan Pengembangan Aplikasi Mobile'}</title>
+            </Helmet>
             <div className="w-full min-h-screen bg-gradient-to-br from-primary/10 via-base-100 to-secondary/10">
                 {/* Hero Section */}
                 <section className="hero min-h-[10vh] bg-base-200">

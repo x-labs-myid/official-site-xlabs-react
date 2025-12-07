@@ -1,4 +1,4 @@
-import { withAuthHeaders } from "@/xyz-panel/utils/auth";
+import { logout, withAuthHeaders } from "@/xyz-panel/utils/auth";
 import { API_URL } from "@/constant";
 import { type SchemaCatalogAppsListResponse, type SchemaCatalogRequest, type SchemaCatalogResponse } from "@/xyz-panel/types/catalog";
 
@@ -7,6 +7,7 @@ export async function getCatalog(): Promise<SchemaCatalogResponse> {
         const response = await fetch(`${API_URL}/core/apps`, withAuthHeaders());
         const data = await response.json();
         if (!response.ok) {
+            if (response.status == 401) logout()
             throw new Error(data.message);
         }
         return data;
@@ -20,6 +21,7 @@ export async function getCatalogForApps(): Promise<SchemaCatalogAppsListResponse
         const response = await fetch(`${API_URL}/core/apps/catalog`, withAuthHeaders());
         const data = await response.json();
         if (!response.ok) {
+            if (response.status == 401) logout()
             throw new Error(data.message);
         }
         return data;
@@ -39,6 +41,7 @@ export async function createCatalog(request: SchemaCatalogRequest): Promise<Sche
         }));
         const data = await response.json();
         if (!response.ok) {
+            if (response.status == 401) logout()
             throw new Error(data.message);
         }
         return data;
@@ -58,6 +61,7 @@ export async function updateCatalog(guid: string, request: SchemaCatalogRequest)
         }));
         const data = await response.json();
         if (!response.ok) {
+            if (response.status == 401) logout()
             throw new Error(data.message);
         }
         return data;
@@ -72,6 +76,7 @@ export async function deleteCatalog(guid: string): Promise<boolean> {
             method: "DELETE"
         }));
         if (!response.ok) {
+            if (response.status == 401) logout()
             throw new Error("Gagal menghapus data catalog");
         }
         return true;

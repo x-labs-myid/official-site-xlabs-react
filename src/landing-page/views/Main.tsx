@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { getDataApp } from "@/landing-page/api";
 import type { LandingPageAppData } from "@/landing-page/type";
 import { Link } from "react-router-dom";
-import { FaApple, FaChevronDown, FaGooglePlay, FaHeart, FaShield } from "react-icons/fa6";
+import { FaApple, FaChevronDown, FaGithub, FaGooglePlay, FaHeart, FaLinkedin, FaShield } from "react-icons/fa6";
 import globalHook from "@/hooks/global";
 import { Helmet } from "react-helmet-async";
+import { PiButterfly } from "react-icons/pi";
 
 const Main = () => {
     const [data, setData] = useState<LandingPageAppData[]>([]);
-    const { toggleLoading } = globalHook()
+    const { toggleLoading, toggleToast } = globalHook()
 
     async function getData() {
         try {
@@ -16,7 +17,8 @@ const Main = () => {
             const res = await getDataApp()
             setData(res)
         } catch (e) {
-            console.log(e)
+            const message = e instanceof Error ? e.message : "Terjadi kesalahan"
+            toggleToast(true, message, 'error')
         } finally {
             toggleLoading(false)
         }
@@ -38,13 +40,13 @@ const Main = () => {
                     <p className="text-center text-xl lg:text-3xl xl:text-3xl">A simple open source Android app, made with <FaHeart className="inline text-red-500" /> and specially brought to you</p>
                     <div className="flex gap-8 mb-20">
                         <a href="https://bsky.app/profile/x-labs.bsky.social" target="_blank" rel="noopener noreferrer" className="btn bg-base-200">
-                            Bluesky
+                            <PiButterfly className="inline" /> Bluesky
                         </a>
                         <a href="https://github.com/x-labs-myid" target="_blank" rel="noopener noreferrer" className="btn bg-base-200">
-                            GitHub
+                            <FaGithub className="inline" /> GitHub
                         </a>
                         <a href="https://www.linkedin.com/company/x-labs-myid" target="_blank" rel="noopener noreferrer" className="btn bg-base-200">
-                            LinkedIn
+                            <FaLinkedin className="inline" /> LinkedIn
                         </a>
                     </div>
                     <a
@@ -60,7 +62,7 @@ const Main = () => {
                     </a>
                 </div>
                 {/* Store Section */}
-                <div id="store" className="w-full h-screen flex flex-col justify-center items-center mx-auto gap-2">
+                <div id="store" className="w-full h-auto lg:h-screen xl:h-screen flex flex-col justify-center items-center mx-auto gap-2 mb-14 lg:mb-0 xl:mb-0">
                     <div className="hero min-h-[20vh] bg-base-200">
                         <div className="hero-content text-center flex flex-col justify-center items-center">
                             <div className="flex flex-row justify-center items-center text-3xl bg-gradient-to-r from-primary to-secondary bg-clip-text gap-2">
@@ -70,7 +72,7 @@ const Main = () => {
                             <p>Discover our applications on Google Play Store through two official developer accounts</p>
                         </div>
                     </div>
-                    <div className="flex gap-8 my-10">
+                    <div className="flex flex-col lg:flex-row gap-8 my-10">
                         <div className="card bg-base-100 w-96 shadow-sm">
                             <figure>
                                 <img

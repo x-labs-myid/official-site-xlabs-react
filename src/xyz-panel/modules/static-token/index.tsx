@@ -3,7 +3,6 @@ import { FaPencil, FaPlus, FaTrash } from "react-icons/fa6"
 import type { SchemaStaticTokenData } from "@/xyz-panel/types/static-token"
 import { useEffect, useState } from "react"
 import { deleteStaticToken, getStaticToken } from "@/xyz-panel/api/static-token"
-import { logout } from "@/xyz-panel/utils/auth"
 import globalHook from "@/hooks/global"
 import Add from "./components/add"
 import type { SchemaCatalogAppsListData } from "@/xyz-panel/types/catalog"
@@ -31,7 +30,6 @@ const StaticToken = () => {
         } catch (error) {
             const message = error instanceof Error ? error.message : "Gagal memuat data static token"
             toggleToast(true, message, "error")
-            logout()
         } finally {
             toggleLoading(false)
         }
@@ -47,7 +45,6 @@ const StaticToken = () => {
         } catch (error) {
             const message = error instanceof Error ? error.message : "Gagal menghapus data static token"
             toggleToast(true, message, "error")
-            logout()
         } finally {
             toggleLoading(false)
             setIdForDelete(null)

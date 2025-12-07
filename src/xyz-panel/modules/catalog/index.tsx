@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async"
 import type { SchemaCatalogData } from "@/xyz-panel/types/catalog"
 import { useEffect, useState } from "react"
 import { deleteCatalog, getCatalog } from "@/xyz-panel/api/catalog"
-import { logout } from "@/xyz-panel/utils/auth"
 import globalHook from "@/hooks/global"
 import { FaPencil, FaPlus, FaTrash } from "react-icons/fa6"
 import Modal from "@/components/ui/Modal"
@@ -25,7 +24,6 @@ const Catalog = () => {
         } catch (error) {
             const message = error instanceof Error ? error.message : "Gagal memuat data catalog"
             toggleToast(true, message, "error")
-            logout()
         } finally {
             toggleLoading(false)
         }
@@ -41,7 +39,6 @@ const Catalog = () => {
         } catch (error) {
             const message = error instanceof Error ? error.message : "Gagal menghapus data catalog"
             toggleToast(true, message, "error")
-            logout()
         } finally {
             toggleLoading(false)
             setIdForDelete(null)

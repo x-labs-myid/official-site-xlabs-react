@@ -15,7 +15,6 @@ const Edit = (
         detail: SchemaCatalogData | null,
         onClose: (refreshData?: boolean) => void
     }) => {
-    console.log(detail?.public)
     const { toggleLoading, toggleToast } = globalHook()
     const { register, handleSubmit, formState: { errors }, reset } = useForm<SchemaCatalogRequest>({
         resolver: zodResolver(schemaCatalogRequest),

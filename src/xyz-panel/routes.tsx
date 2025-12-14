@@ -8,7 +8,7 @@ import Catalog from "./modules/catalog";
 import StaticToken from "./modules/static-token";
 import UserDevice from "./modules/user-device";
 import Term from "./modules/term";
-import Organization from "./organization";
+import Organization from "./modules/organization";
 import LinkSocialMedia from "./modules/link-social-media";
 import Team from "./modules/team";
 import SocialMedia from "./modules/social-media";

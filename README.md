@@ -1,75 +1,96 @@
-# React + TypeScript + Vite
+# XLabs - Official Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.1-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-4.0-646CFF?logo=vite)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
 
-Currently, two official plugins are available:
+## 🚀 Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Prerequisites
+- Node.js 18.0.0 or later
+- npm (comes with Node.js) or yarn
+- Git
 
-## React Compiler
+### 🛠️ Installation
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/x-labs-myid/official-site-xlabs-react.git
+   cd official-site-xlabs-react
+   ```
 
-Note: This will impact Vite dev & build performances.
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   yarn
+   # or
+   pnpm install
+   ```
 
-## Expanding the ESLint configuration
+3. **Environment setup**
+   Copy the `.env.example` file to `.env` and update the values as needed.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+4. **Start the development server**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+5. 📦 Build for Production
+```bash
+npm run build
+# or
+yarn build
+# or
+pnpm build
 ```
+The production build will be available in the dist directory.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠️ Tech Stack
+- Frontend Framework: React 19
+- Language: TypeScript 5.1
+- Build Tool: Vite 4
+- Styling: Tailwind CSS 3 + DaisyUI
+- State Management: Jotai
+- Form Handling: React Hook Form + Zod
+- Routing: React Router DOM
+- Linting: ESLint
+- Code Formatting: Prettier
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📁 Project Structure
+```
+official-site-xlabs-react/
+├── public/                           # Static files
+├── src/                              # Source code
+│   ├── landing-page/                 # View part landing page
+│   |   ├── components/               # Landing page specific components
+│   |   ├── views/                    # Landing page specific views
+│   |   ├── api/                      # Landing page API calls
+│   |   ├── routes/                   # Landing page route definitions
+│   |   ├── types/                    # Landing page type definitions
+│   ├── xyz-panel/                    # View part XYZ panel
+│   |   ├── api/                      # XYZ panel API calls
+│   |   ├── modules/                  # XYZ panel specific modules
+│   |   ├── types/                    # XYZ panel type definitions
+│   |   ├── utils/                    # XYZ panel utility functions
+│   |   ├── routes/                   # XYZ panel route definitions
+│   ├── assets/                       # Images, fonts, etc.
+│   ├── components/                   # Reusable UI components Global
+│   ├── hooks/                        # Custom React hooks
+│   ├── store/                        # State management (Jotai)
+│   ├── App.tsx                       # Main App component
+│   └── main.tsx                      # Application entry point
+├── .eslintrc.js                      # ESLint configuration
+├── .env                              # Environment variables
+├── .env.example                      # Example environment variables
+├── .gitignore                        # Git ignore file
+├── package.json                      # Project dependencies and scripts
+├── tailwind.config.js                # Tailwind CSS configuration
+├── tsconfig.json                     # TypeScript configuration
+└── vite.config.ts                    # Vite configuration
 ```

@@ -67,13 +67,13 @@ The production build will be available in the dist directory.
 official-site-xlabs-react/
 ├── public/                           # Static files
 ├── src/                              # Source code
-│   ├── landing-page/                 # View part landing page
+│   ├── landing-page/                 # Facing landing page
 │   |   ├── components/               # Landing page specific components
 │   |   ├── views/                    # Landing page specific views
 │   |   ├── api/                      # Landing page API calls
 │   |   ├── routes/                   # Landing page route definitions
 │   |   ├── types/                    # Landing page type definitions
-│   ├── xyz-panel/                    # View part XYZ panel
+│   ├── xyz-panel/                    # Facing XYZ panel
 │   |   ├── api/                      # XYZ panel API calls
 │   |   ├── modules/                  # XYZ panel specific modules
 │   |   ├── types/                    # XYZ panel type definitions

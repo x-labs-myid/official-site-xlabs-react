@@ -1,0 +1,148 @@
+import { useEffect, useRef } from "react";
+import {
+  FaHeart,
+  FaRocket,
+  FaCode,
+  FaServer,
+  FaGraduationCap,
+  FaShieldHalved,
+} from "react-icons/fa6";
+
+const SupportUs = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scriptUrl =
+      "https://edge-cdn.trakteer.id/js/trbtn-overlay.min.js?v=24-01-2025";
+    let script = document.querySelector(
+      `script[src="${scriptUrl}"]`
+    ) as HTMLScriptElement;
+
+    const initBtn = () => {
+      if ((window as any).trbtnOverlay && containerRef.current) {
+        // Clear previous buttons if any to prevent duplicates
+        containerRef.current.innerHTML = "";
+
+        const inlineScript = document.createElement("script");
+        inlineScript.className = "troverlay";
+        inlineScript.type = "text/javascript";
+        inlineScript.innerHTML = `
+          (function() {
+            var trbtnId = trbtnOverlay.init('Support Us on Trakteer', '#0593FC', 'https://trakteer.id/kang_cahya/tip/embed/modal', 'https://edge-cdn.trakteer.id/images/embed/trbtn-icon.png?v=24-01-2025', '40', 'inline');
+            trbtnOverlay.draw(trbtnId);
+          })();
+        `;
+        containerRef.current.appendChild(inlineScript);
+      }
+    };
+
+    if (!script) {
+      script = document.createElement("script");
+      script.src = scriptUrl;
+      script.async = true;
+      document.body.appendChild(script);
+      script.addEventListener("load", initBtn);
+    } else {
+      // If script already exists, check if loaded
+      initBtn();
+      // Also add listener in case it's still loading
+      script.addEventListener("load", initBtn);
+    }
+
+    return () => {
+      if (script) {
+        script.removeEventListener("load", initBtn);
+      }
+    };
+  }, []);
+
+  return (
+    <section id="support-us" className="bg-[#6f42c1] py-12">
+      <div className="w-full h-auto lg:h-screen xl:h-screen flex flex-col justify-center items-center mx-auto gap-2 lg:mb-0 xl:mb-0 px-4">
+        <div className="container mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-white text-3xl font-bold mb-3 flex items-center justify-center gap-2">
+              <FaHeart className="text-red-500" />
+              Support Our Mission
+            </h2>
+            <p className="text-white text-lg opacity-90 mb-0">
+              Help us build exceptional applications for a better digital future
+            </p>
+          </div>
+          <div className="flex justify-center">
+            <div className="w-full lg:w-10/12 xl:w-8/12">
+              <div className="card border-0 shadow-lg backdrop-blur-md bg-white/95 rounded-box">
+                <div className="card-body p-8 sm:p-12">
+                  <div className="text-center mb-10">
+                    <div className="inline-flex items-center justify-center bg-primary/10 rounded-full w-20 h-20 mb-4">
+                      <FaRocket className="text-3xl text-primary" />
+                    </div>
+                    <h3 className="mb-3 text-gray-900 font-bold text-2xl">
+                      Why Your Support Matters
+                    </h3>
+                    <p className="text-gray-900 text-lg leading-relaxed">
+                      Your contribution enables us to continuously develop
+                      high-quality applications, provide regular updates, and
+                      create innovative features that benefit all users.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                    <div className="text-center p-3">
+                      <div className="inline-flex items-center justify-center bg-primary/10 rounded-full w-16 h-16 mb-3">
+                        <FaCode className="text-xl text-primary" />
+                      </div>
+                      <h5 className="text-gray-900 font-semibold mb-2 text-lg">
+                        Development
+                      </h5>
+                      <p className="text-gray-900 text-sm mb-0 opacity-80">
+                        New features and improvements
+                      </p>
+                    </div>
+                    <div className="text-center p-3">
+                      <div className="inline-flex items-center justify-center bg-green-500/10 rounded-full w-16 h-16 mb-3">
+                        <FaServer className="text-xl text-green-600" />
+                      </div>
+                      <h5 className="text-gray-900 font-semibold mb-2 text-lg">
+                        Infrastructure
+                      </h5>
+                      <p className="text-gray-900 text-sm mb-0 opacity-80">
+                        Servers and hosting services
+                      </p>
+                    </div>
+                    <div className="text-center p-3">
+                      <div className="inline-flex items-center justify-center bg-yellow-500/10 rounded-full w-16 h-16 mb-3">
+                        <FaGraduationCap className="text-xl text-yellow-600" />
+                      </div>
+                      <h5 className="text-gray-900 font-semibold mb-2 text-lg">
+                        Education
+                      </h5>
+                      <p className="text-gray-900 text-sm mb-0 opacity-80">
+                        Learning and research
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="text-center">
+                    <div
+                      ref={containerRef}
+                      className="inline-block p-4 bg-gray-50 rounded-3xl shadow-sm min-h-[60px] min-w-[200px]"
+                    >
+                      {/* Trakteer button injected here */}
+                    </div>
+                    <p className="text-gray-900 text-sm mt-4 mb-0 flex items-center justify-center gap-1">
+                      <FaShieldHalved className="text-green-600" />
+                      Secure payment powered by Trakteer
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default SupportUs;

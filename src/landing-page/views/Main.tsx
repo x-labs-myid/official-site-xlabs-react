@@ -12,6 +12,9 @@ import Store from "../components/main/Store";
 import AppList from "../components/main/AppList";
 import AboutUs from "../components/main/AboutUs";
 import Team from "../components/main/Team";
+import OurStack from "../components/main/OurStack";
+import SupportUs from "../components/main/SupportUs";
+import Footer from "../components/main/Footer";
 
 import type {
   LandingPageAppData,
@@ -67,6 +70,9 @@ const Main = () => {
         {storeList.length > 0 && <Store storeList={storeList} />}
         {appList.length > 0 && <AppList appList={appList} />}
         {teamList.length > 0 && <Team teamList={teamList} />}
+        <OurStack />
+        <SupportUs />
+        <Footer />
       </div>
     </>
   );

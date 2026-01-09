@@ -68,7 +68,7 @@ const Navbar = ({ hasStore, hasApps, hasTeam }: NavbarProps) => {
     >
       <div className="flex items-center justify-between">
         <div
-          className="flex items-center gap-2 cursor-pointer"
+          className="flex items-center gap-2 cursor-pointer mr-3"
           onClick={() => scrollToSection("home")}
         >
           <img

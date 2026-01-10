@@ -35,7 +35,7 @@ const AboutUs = () => {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-            <div className="card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+            <div className="card bg-base-100 transition-shadow">
               <div className="card-body text-center items-center">
                 <div className="bg-primary/10 p-4 rounded-full mb-2">
                   <FaMobileAlt className="w-8 h-8 text-xlabs-primary" />
@@ -45,7 +45,7 @@ const AboutUs = () => {
               </div>
             </div>
 
-            <div className="card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+            <div className="card bg-base-100 transition-shadow">
               <div className="card-body text-center items-center">
                 <div className="bg-primary/10 p-4 rounded-full mb-2">
                   <FaAward className="w-8 h-8 text-xlabs-primary" />
@@ -59,7 +59,7 @@ const AboutUs = () => {
               </div>
             </div>
 
-            <div className="card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+            <div className="card bg-base-100 transition-shadow">
               <div className="card-body text-center items-center">
                 <div className="bg-primary/10 p-4 rounded-full mb-2">
                   <FaGithub className="w-8 h-8 text-xlabs-primary" />
@@ -69,7 +69,7 @@ const AboutUs = () => {
               </div>
             </div>
 
-            <div className="card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+            <div className="card bg-base-100 transition-shadow">
               <div className="card-body text-center items-center">
                 <div className="bg-primary/10 p-4 rounded-full mb-2">
                   <FaLeaf className="w-8 h-8 text-xlabs-primary" />
@@ -79,7 +79,7 @@ const AboutUs = () => {
               </div>
             </div>
 
-            <div className="card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+            <div className="card bg-base-100 transition-shadow">
               <div className="card-body text-center items-center">
                 <div className="bg-primary/10 p-4 rounded-full mb-2">
                   <FaShieldHalved className="w-8 h-8 text-xlabs-primary" />
@@ -89,7 +89,7 @@ const AboutUs = () => {
               </div>
             </div>
 
-            <div className="card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+            <div className="card bg-base-100 transition-shadow">
               <div className="card-body text-center items-center">
                 <div className="bg-primary/10 p-4 rounded-full mb-2">
                   <FaTachometerAlt className="w-8 h-8 text-xlabs-primary" />

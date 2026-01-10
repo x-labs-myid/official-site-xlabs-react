@@ -1,6 +1,7 @@
 import type { RouteObject } from "react-router-dom";
 import Main from "./views/Main";
 import WithParam from "./views/WithParam";
+import NotFound from "./views/NotFound";
 import LandingWrapper from "@/components/layout/LandingWrapper";
 
 export const LandingPageRoutes: RouteObject[] = [
@@ -25,6 +26,14 @@ export const LandingPageRoutes: RouteObject[] = [
     element: (
       <LandingWrapper>
         <WithParam />
+      </LandingWrapper>
+    ),
+  },
+  {
+    path: "*",
+    element: (
+      <LandingWrapper>
+        <NotFound />
       </LandingWrapper>
     ),
   },

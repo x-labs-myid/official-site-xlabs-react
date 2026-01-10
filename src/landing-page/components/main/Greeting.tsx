@@ -46,7 +46,7 @@ const Greeting = () => {
             <FaLinkedin className="inline" /> LinkedIn
           </a>
         </div>
-        <a
+        {/* <a
           href="#store"
           className="flex flex-col justify-center items-center shake"
           onClick={(e) => {
@@ -58,7 +58,7 @@ const Greeting = () => {
         >
           <p className="text-lg mb-3">See Our Official Store</p>
           <FaChevronDown className="w-6 h-6" />
-        </a>
+        </a> */}
       </div>
     </>
   );

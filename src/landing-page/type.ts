@@ -39,6 +39,7 @@ export type LandingPageTeamResponse = {
 };
 
 export type LandingPageTeamData = {
+  avatar_url: string;
   name: string;
   title: string;
   social_media: {
@@ -66,6 +67,7 @@ export type LandingPageTermAppData = {
   term: {
     name: string;
     content: string;
+    updated_at: string;
   };
 };
 

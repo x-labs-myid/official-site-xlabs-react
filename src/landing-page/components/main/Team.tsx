@@ -25,8 +25,13 @@ const Team = ({ teamList }: { teamList: LandingPageTeamData[] }) => {
             <div className="card bg-white text-gray-800 w-96 shadow-sm">
               <figure>
                 <img
-                  src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png"
-                  alt="Play Store"
+                  src={
+                    team.avatar_url
+                      ? team.avatar_url
+                      : "/assets/images/avatar-default.png"
+                  }
+                  alt={team.name}
+                  className="w-full h-80 object-cover"
                 />
               </figure>
               <div className="card-body text-center">
@@ -38,8 +43,9 @@ const Team = ({ teamList }: { teamList: LandingPageTeamData[] }) => {
           <div className="card bg-white text-gray-800 w-96 shadow-sm">
             <figure>
               <img
-                src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png"
-                alt="Play Store"
+                src="/assets/images/avatar-default.png"
+                alt="Avatar"
+                className="w-full h-80 object-cover"
               />
             </figure>
             <div className="card-body text-center">

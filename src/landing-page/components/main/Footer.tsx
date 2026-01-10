@@ -178,12 +178,7 @@ const Footer = () => {
           </div>
           <p className="text-sm">
             Develop by{" "}
-            <a
-              href="https://www.kang-cahya.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold hover:underline"
-            >
+            <a rel="noopener noreferrer" className="font-bold">
               X-LABS | my.id Teams
             </a>
           </p>
